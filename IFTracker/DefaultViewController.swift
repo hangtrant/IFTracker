@@ -6,24 +6,33 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DefaultViewController: UIViewController {
-
+    let realm = try! Realm()
+    let user = User()
+    
+    @IBOutlet weak var nicknameTextField: UITextField!
+    
+    //スタットボタンを押すとき
+    @IBAction func handleStartButton(_ sender: Any) {
+        if let nickname = nicknameTextField.text {
+            if nickname.isEmpty {
+                return
+            }
+        }
+        user.nickname = nicknameTextField.text!
+        try! realm.write() {
+            realm.add(user)
+        }
+        // 画面を閉じてタブ画面に戻る
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -3,14 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1241945F618C79A4C8CF9EC6 /* Pods_IFTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA3CCFB7BAE134DE598FCFB /* Pods_IFTracker.framework */; };
+		869C9D0E26EF47C300EB2E31 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C9D0D26EF47C300EB2E31 /* Tracker.swift */; };
+		86CB282D26EF3E0600F15E28 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CB282C26EF3E0600F15E28 /* TabBarController.swift */; };
 		86D9D71426EF31E100FEC5E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D9D71326EF31E100FEC5E0 /* AppDelegate.swift */; };
 		86D9D71626EF31E100FEC5E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D9D71526EF31E100FEC5E0 /* SceneDelegate.swift */; };
-		86D9D71826EF31E100FEC5E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D9D71726EF31E100FEC5E0 /* ViewController.swift */; };
 		86D9D71B26EF31E100FEC5E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86D9D71926EF31E100FEC5E0 /* Main.storyboard */; };
 		86D9D71D26EF31E100FEC5E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D9D71C26EF31E100FEC5E0 /* Assets.xcassets */; };
 		86D9D72026EF31E100FEC5E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86D9D71E26EF31E100FEC5E0 /* LaunchScreen.storyboard */; };
@@ -24,10 +25,11 @@
 /* Begin PBXFileReference section */
 		2220D17861596845E817261F /* Pods-IFTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFTracker.debug.xcconfig"; path = "Target Support Files/Pods-IFTracker/Pods-IFTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		343FD0A0A3ADB20583123522 /* Pods-IFTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFTracker.release.xcconfig"; path = "Target Support Files/Pods-IFTracker/Pods-IFTracker.release.xcconfig"; sourceTree = "<group>"; };
+		869C9D0D26EF47C300EB2E31 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
+		86CB282C26EF3E0600F15E28 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		86D9D71026EF31E100FEC5E0 /* IFTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IFTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86D9D71326EF31E100FEC5E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86D9D71526EF31E100FEC5E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		86D9D71726EF31E100FEC5E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		86D9D71A26EF31E100FEC5E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86D9D71C26EF31E100FEC5E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86D9D71F26EF31E100FEC5E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +60,6 @@
 				2220D17861596845E817261F /* Pods-IFTracker.debug.xcconfig */,
 				343FD0A0A3ADB20583123522 /* Pods-IFTracker.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -85,12 +86,13 @@
 			children = (
 				86D9D71326EF31E100FEC5E0 /* AppDelegate.swift */,
 				86D9D71526EF31E100FEC5E0 /* SceneDelegate.swift */,
-				86D9D71726EF31E100FEC5E0 /* ViewController.swift */,
 				86D9D72F26EF3A0200FEC5E0 /* GoalViewController.swift */,
+				86CB282C26EF3E0600F15E28 /* TabBarController.swift */,
 				86D9D72D26EF39E000FEC5E0 /* SettingViewController.swift */,
 				86D9D72B26EF39C500FEC5E0 /* ChartViewController.swift */,
 				86D9D72926EF39A800FEC5E0 /* HomeViewController.swift */,
 				86D9D72726EF395D00FEC5E0 /* DefaultViewController.swift */,
+				869C9D0D26EF47C300EB2E31 /* Tracker.swift */,
 				86D9D71926EF31E100FEC5E0 /* Main.storyboard */,
 				86D9D71C26EF31E100FEC5E0 /* Assets.xcassets */,
 				86D9D71E26EF31E100FEC5E0 /* LaunchScreen.storyboard */,
@@ -222,10 +224,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				86D9D72A26EF39A900FEC5E0 /* HomeViewController.swift in Sources */,
-				86D9D71826EF31E100FEC5E0 /* ViewController.swift in Sources */,
+				86CB282D26EF3E0600F15E28 /* TabBarController.swift in Sources */,
 				86D9D71426EF31E100FEC5E0 /* AppDelegate.swift in Sources */,
 				86D9D72826EF395D00FEC5E0 /* DefaultViewController.swift in Sources */,
 				86D9D71626EF31E100FEC5E0 /* SceneDelegate.swift in Sources */,
+				869C9D0E26EF47C300EB2E31 /* Tracker.swift in Sources */,
 				86D9D73026EF3A0200FEC5E0 /* GoalViewController.swift in Sources */,
 				86D9D72E26EF39E000FEC5E0 /* SettingViewController.swift in Sources */,
 				86D9D72C26EF39C500FEC5E0 /* ChartViewController.swift in Sources */,

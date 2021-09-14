@@ -6,14 +6,27 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //Update new Realm construct
+        let config = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 1) {
+                }
+            })
+        Realm.Configuration.defaultConfiguration = config
+        
+        //Setup first lunch key
+        let ud = UserDefaults.standard
+        let firstLunchKey = "firstLunch"
+        let firstLunch = [firstLunchKey: true]
+        ud.register(defaults: firstLunch)
         return true
     }
 
