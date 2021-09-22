@@ -8,22 +8,25 @@
 import UIKit
 
 class GoalViewController: UIViewController {
-
+    var newGoal = 16
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func for16hoursButton(_ sender: Any) {
+        newGoal = 16
     }
-    */
-
+    @IBAction func for18hoursButton(_ sender: Any) {
+        newGoal = 18
+    }
+    @IBAction func for20hoursButton(_ sender: Any) {
+        newGoal = 20
+    }
+    @IBAction func for24hoursButton(_ sender: Any) {
+        newGoal = 24
+    }
+    @IBAction func for36hoursButton(_ sender: Any) {
+        newGoal = 36
+    }
 }

@@ -30,6 +30,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
                 return true
             }
         }
+    
     override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
 
@@ -43,6 +44,4 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             self.present(defaultViewController!, animated: true, completion: nil)
             }
     }
-    
-    
 }

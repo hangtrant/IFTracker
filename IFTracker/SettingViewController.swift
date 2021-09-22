@@ -12,6 +12,7 @@ class SettingViewController: UIViewController {
     let realm = try! Realm()
     
     @IBOutlet weak var nicknameTextField: UITextField!
+    
     @IBAction func handleChangeNicknameButton(_ sender: Any) {
         if let nickname = nicknameTextField.text {
             if nickname.isEmpty {
@@ -27,6 +28,7 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         let user = realm.objects(User.self).last
         nicknameTextField.text = user?.nickname
+        
         // Do any additional setup after loading the view.
     }
 
