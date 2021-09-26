@@ -32,16 +32,16 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         }
     
     override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
+        super.viewDidAppear(animated)
 
-            //この下の7行を追加
-            let ud = UserDefaults.standard
-            let firstLunchKey = "firstLunch"
-            if ud.bool(forKey: firstLunchKey) {
-            ud.set(false, forKey: firstLunchKey)
-            ud.synchronize()
-            let defaultViewController = self.storyboard?.instantiateViewController(withIdentifier: "Default")
-            self.present(defaultViewController!, animated: true, completion: nil)
-            }
+        //この下の7行を追加
+        let ud = UserDefaults.standard
+        let firstLunchKey = "firstLunch"
+        if ud.bool(forKey: firstLunchKey) {
+        ud.set(false, forKey: firstLunchKey)
+        ud.synchronize()
+        let defaultViewController = self.storyboard?.instantiateViewController(withIdentifier: "Default")
+        self.present(defaultViewController!, animated: true, completion: nil)
+        }
     }
 }

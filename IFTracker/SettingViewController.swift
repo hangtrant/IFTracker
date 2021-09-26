@@ -24,8 +24,8 @@ class SettingViewController: UIViewController {
             user?.nickname = nicknameTextField.text!
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let user = realm.objects(User.self).last
         nicknameTextField.text = user?.nickname
         

@@ -25,6 +25,10 @@ class DefaultViewController: UIViewController {
         try! realm.write() {
             realm.add(user)
         }
+        
+        let storyboard = self.storyboard!
+        let home = storyboard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
+        home.outputValue = self.nicknameTextField.text
         // 画面を閉じてタブ画面に戻る
         self.dismiss(animated: true, completion: nil)
     }

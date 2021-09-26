@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     var timer: Timer!
     var count: Int = 0
     var timerCouting: Bool = false
+    var outputValue : String?
     
     let shapeLayer = CAShapeLayer()
     let percentageLabel : UILabel = {
@@ -42,22 +43,21 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var fastingButton: UIButton!
     
     override func viewDidLoad() {
+        super.loadView()
         super.viewDidLoad()
         goalButton.setTitle("\(goal)hours", for: .normal)
         
         let user = realm.objects(User.self).last
-        nicknameLabel.text = "Hi,\(user?.nickname ?? "you")"
+        outputValue = user?.nickname
+        nicknameLabel.text = "Hi,\(outputValue ?? "you")"
         statusLabel.text = "Best of luck on today's fast!"
         // Do any additional setup after loading the view.
-        let lastTracker = realm.objects(Tracker.self).last
-        print(lastTracker as Any)
         hiddenLabel()
         drawProgressChart()
         createDateTimePicker()
-        
     }
     
-    //開始時間・終了時間のラベルを隠蔽する
+    
     func hiddenLabel() {
         startLabel.isHidden = true
         endLabel.isHidden = true
@@ -65,7 +65,7 @@ class HomeViewController: UIViewController {
         endTimeLabel.isHidden = true
         timerLabel.isHidden = true
     }
-    //開始時間・終了時間のラベルを表示する
+    
     func invisibleLabel() {
         startLabel.isHidden = false
         endLabel.isHidden = false
@@ -93,7 +93,11 @@ class HomeViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
                 let lastTracker = self.realm.objects(Tracker.self).last
                 let tracker = Tracker()
-                tracker.id = lastTracker!.id + 1
+                if lastTracker == nil {
+                    tracker.id = 0
+                } else {
+                    tracker.id = lastTracker!.id + 1
+                }
                 tracker.startTime = self.datePicker.date
                 tracker.stopTime = self.datePicker.date + TimeInterval((60 * 60 * self.goal))
                 tracker.elapsedTime = Double(self.count)
