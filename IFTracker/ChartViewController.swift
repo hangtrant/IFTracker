@@ -16,15 +16,13 @@ class ChartViewController: UIViewController {
     @IBOutlet weak var graphStackView: UIStackView!
     @IBOutlet weak var averageTimeLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.loadView()
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         graphView.layer.cornerRadius = 25
         setupGraph()
+        
+        // Do any additional setup after loading the view.
     }
-    
     func setupGraph() {
         
         var sumTime = 0.0

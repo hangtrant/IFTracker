@@ -42,9 +42,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var goalButton: UIButton!
     @IBOutlet weak var fastingButton: UIButton!
     
-    override func viewDidLoad() {
-        super.loadView()
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         goalButton.setTitle("\(goal)hours", for: .normal)
         
         let user = realm.objects(User.self).last
@@ -55,8 +54,9 @@ class HomeViewController: UIViewController {
         hiddenLabel()
         drawProgressChart()
         createDateTimePicker()
+        
+        // Do any additional setup after loading the view.
     }
-    
     
     func hiddenLabel() {
         startLabel.isHidden = true
