@@ -42,13 +42,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var goalButton: UIButton!
     @IBOutlet weak var fastingButton: UIButton!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         goalButton.setTitle("\(goal)hours", for: .normal)
         
-        let user = realm.objects(User.self).last
-        outputValue = user?.nickname
-        nicknameLabel.text = "Hi,\(outputValue ?? "you")"
+//        let user = realm.objects(User.self).last
+//        outputValue = user?.nickname
+//        nicknameLabel.text = "Hi,\(outputValue ?? "you")"
         statusLabel.text = "Best of luck on today's fast!"
         // Do any additional setup after loading the view.
         hiddenLabel()
@@ -57,7 +57,12 @@ class HomeViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let user = realm.objects(User.self).last
+        outputValue = user?.nickname
+        nicknameLabel.text = "Hi,\(outputValue ?? "you")"
+    }
     func hiddenLabel() {
         startLabel.isHidden = true
         endLabel.isHidden = true
@@ -78,6 +83,7 @@ class HomeViewController: UIViewController {
     @IBAction func fastingButton(_ sender: Any) {
         if timerCouting == false {
             timerCouting = true
+            count = 0
             fastingButton.setTitle("Stop Fasting", for: .normal)
             statusLabel.text = "You are fasting ! Keep it up !"
             invisibleLabel()
@@ -108,17 +114,17 @@ class HomeViewController: UIViewController {
                     print("DONE")
                 }
                 self.timerCouting = false
+                self.count = 0
                 self.fastingButton.setTitle("Start Fasting", for: .normal)
                 self.statusLabel.text = "Best of luck on today's fast!"
                 self.hiddenLabel()
                 self.timer.invalidate()
-                self.count = 0
+                self.timer = nil
                 self.timerLabel.text = self.makeTimeString(hours: 0, minutes: 0, seconds: 0)
                 self.datePicker.date = Date()
                 self.drawProgressChart()
             }))
             self.present(alert, animated: true, completion: nil)
-            
         }
     }
     
@@ -184,7 +190,7 @@ class HomeViewController: UIViewController {
         //formatter
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd、HH:mm"
-        let startTime = formatter.string(from: startTime)
+        let startTime = formatter.string(from: Date())
         startTimeTextField.text = "\(startTime)"
     }
     
@@ -257,7 +263,7 @@ class HomeViewController: UIViewController {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
         basicAnimation.toValue = 1
-        basicAnimation.duration = 2
+        basicAnimation.duration = 1
         
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false

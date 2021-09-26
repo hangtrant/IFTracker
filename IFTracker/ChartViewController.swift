@@ -17,15 +17,17 @@ class ChartViewController: UIViewController {
     @IBOutlet weak var averageTimeLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
+        super.loadView()
         super.viewWillAppear(animated)
+        
         graphView.layer.cornerRadius = 25
         setupGraph()
-        
         // Do any additional setup after loading the view.
     }
     func setupGraph() {
         
         var sumTime = 0.0
+        var count = 0
         let barWidth: CGFloat = 15
         let lastTracker = realm.objects(Tracker.self).last
         if lastTracker != nil {
@@ -36,15 +38,17 @@ class ChartViewController: UIViewController {
             let tracker = realm.objects(Tracker.self).filter("id BETWEEN {\(condition), \(lastTracker!.id)}").sorted(byKeyPath: "startTime")
             for i in 0...(tracker.count - 1) {
                 //Get tracking info
-                var topH = 0
-                var bottomH = 0
-                
-                topH = (tracker[i]["elapsedTime"]) as! Int / 3600
-                bottomH = (tracker[i]["goalTime"]) as! Int / 3600
+                let topH = (tracker[i]["elapsedTime"]) as! Int / 3600
+                let bottomH = (tracker[i]["goalTime"]) as! Int / 3600
                 sumTime += (tracker[i]["elapsedTime"]) as! Double
+                count += 1
+                print("SUMTIME")
+                print(sumTime)
+                
                 let graphBottom = UIView()
                 let graphTop = UIView()
                 let graphLabel = UILabel()
+                
                 graphLabel.textColor = .gray
                 graphLabel.font = UIFont.systemFont(ofSize: 12)
                 
@@ -56,6 +60,7 @@ class ChartViewController: UIViewController {
                 graphStack.alignment = .center
                 
                 graphBottom.backgroundColor = UIColor.systemGray
+                
                 if topH >= bottomH {
                     graphTop.backgroundColor = UIColor.systemGreen
                 } else {
@@ -90,11 +95,12 @@ class ChartViewController: UIViewController {
                     graphBottom.layoutIfNeeded()
                 })
             }
-            
+            print("SUMTIME 2")
+           
+            let averageTime = ((Int(sumTime) / count) / 3600)
+            print(averageTime)
+            averageTimeLabel.text = String(format: "%d"+"h", averageTime)
         }
-        
-        let averageTime = (sumTime / 7) / 3600
-        averageTimeLabel.text = String(format: "%.02f"+"h", averageTime)
     }
     
     func setupInfo(label: UILabel, index: Int, trackerInfo : Results<Tracker>) {
