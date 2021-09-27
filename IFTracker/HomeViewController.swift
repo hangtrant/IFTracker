@@ -25,7 +25,6 @@ class HomeViewController: UIViewController {
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 32)
         return label
-        
     }()
     let datePicker = UIDatePicker()
     
@@ -46,16 +45,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         goalButton.setTitle("\(goal)hours", for: .normal)
         
-//        let user = realm.objects(User.self).last
-//        outputValue = user?.nickname
-//        nicknameLabel.text = "Hi,\(outputValue ?? "you")"
         statusLabel.text = "Best of luck on today's fast!"
-        // Do any additional setup after loading the view.
         hiddenLabel()
         drawProgressChart()
         createDateTimePicker()
-        
-        // Do any additional setup after loading the view.
+        print("DEBUG TIMER 3")
+        print(timer as Any)
+        print(count)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -63,6 +59,7 @@ class HomeViewController: UIViewController {
         outputValue = user?.nickname
         nicknameLabel.text = "Hi,\(outputValue ?? "you")"
     }
+    
     func hiddenLabel() {
         startLabel.isHidden = true
         endLabel.isHidden = true
@@ -82,14 +79,21 @@ class HomeViewController: UIViewController {
     //Start Or Stop Fasting
     @IBAction func fastingButton(_ sender: Any) {
         if timerCouting == false {
+            print("DEBUG TIMER 1 :")
+            print(timer as Any)
+            print(count)
+            if timer != nil {
+                timer.invalidate()
+                timer = nil
+                count = 0
+            }
             timerCouting = true
-            count = 0
             fastingButton.setTitle("Stop Fasting", for: .normal)
             statusLabel.text = "You are fasting ! Keep it up !"
             invisibleLabel()
             displayStartTime()
             displayEndTime(startTime: startTime)
-            
+            datePicker.date = Date()
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
         } else {
             let alert = UIAlertController(title: "Stop Fasting ?", message: "Are you sure stop fasting ?", preferredStyle: .alert)
@@ -114,12 +118,17 @@ class HomeViewController: UIViewController {
                     print("DONE")
                 }
                 self.timerCouting = false
-                self.count = 0
                 self.fastingButton.setTitle("Start Fasting", for: .normal)
                 self.statusLabel.text = "Best of luck on today's fast!"
                 self.hiddenLabel()
-                self.timer.invalidate()
-                self.timer = nil
+                if self.timer != nil {
+                    self.timer.invalidate()
+                    self.timer = nil
+                    self.count = 0
+                }
+                print("DEBUG TIMER 2")
+                print(self.timer)
+                print(self.count)
                 self.timerLabel.text = self.makeTimeString(hours: 0, minutes: 0, seconds: 0)
                 self.datePicker.date = Date()
                 self.drawProgressChart()
@@ -131,6 +140,9 @@ class HomeViewController: UIViewController {
     //timerCounter
     @objc func timerCounter() {
         count = Int(Date().timeIntervalSince(datePicker.date))
+        print("DEBUG TIMER IN COUNTER")
+        print(datePicker.date)
+        print(count)
         let time = secondsToHourMinutesSeconds(seconds: count)
         let timeString = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
         timerLabel.text = timeString
